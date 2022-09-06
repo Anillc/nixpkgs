@@ -80,8 +80,8 @@ sub runConfig {
             if ($line =~ /(.*) \(([A-Za-z0-9_]+)\) \[(.*)\].*###$/) {
                 my $question = $1; my $name = $2; my $alts = $3;
                 my $answer = "";
-                # Build everything as a module if possible.
-                $answer = "m" if $autoModules && $alts =~ qr{\A(\w/)+m/(\w/)*\?\z} && !($preferBuiltin && $alts =~ /Y/);
+                # Build everything as a n if possible.
+                $answer = "n" if $autoModules && $alts =~ qr{\A(\w/)+m/(\w/)*\?\z} && !($preferBuiltin && $alts =~ /Y/);
                 $answer = $answers{$name} if defined $answers{$name};
                 print STDERR "QUESTION: $question, NAME: $name, ALTS: $alts, ANSWER: $answer\n" if $debug;
                 print OUT "$answer\n";
