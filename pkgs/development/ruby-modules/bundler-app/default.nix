@@ -38,6 +38,7 @@
   postBuild ? "",
   gemConfig ? null,
   passthru ? { },
+  ...
 }@args:
 
 let
