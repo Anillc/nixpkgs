@@ -90,6 +90,8 @@ lib.makeOverridable (
           }
         else if type == "url" then
           fetchurl attrs.source
+        else if type == "path" then
+          attrs.source.path
         else
           throw "buildRubyGem: don't know how to build a gem of type \"${type}\""
       );
@@ -223,7 +225,7 @@ lib.makeOverridable (
 
           echo "buildFlags: $buildFlags"
 
-          ${lib.optionalString (type == "url") ''
+          ${lib.optionalString (type == "url" || type == "path") ''
             ruby ${./nix-bundle-install.rb} \
               "path" \
               '${gemName}' \
